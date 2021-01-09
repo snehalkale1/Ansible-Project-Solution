@@ -1,0 +1,55 @@
+Create ec2 instance with admin role assigned or ec2full access
+By root user install ansible, git
+
+create jenkins and use jenkins user
+username=jenkins
+password=jenkins
+
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+download maven
+download java archieve in my case jdk-8u251-linux-x64.tar.gz
+
+#Create require directories
+cd /home/jenkins
+mkdir home bin logs software software/java software/maven
+
+#Set java
+cd software/java
+tar -zxvf jdk-8u251-linux-x64.tar.gz
+ln -s jdk1.8.0_251 jdk
+
+#set maven
+cd software/maven
+tar -zxvf apache-maven-3.6.3-bin.tar.gz
+ln -s apache-maven-3.6.3 maven
+
+#create startup script
+/home/jenkins/bin/start_jenkins.sh
+#!/bin/bash
+JAVA_HOME=/home/jenkins/software/java/jdk
+JENKINS_HOME=/home/jenkins/home
+PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME JENKINS_HOME PATH
+nohup java -jar "/home/jenkins/jenkins.war" > /home/jenkins/logs/startup.log &
+
+#create stop script
+/home/jenkins/bin/stop_jenkins.sh
+#!/bin/bash
+kill -9 `ps aux |grep jenkins.war |awk '{print $2}' |head -n1`
+
+#give executable permission
+chmod u+x /home/jenkins/bin/*
+
+#start jenkins and complete intialization by creating admin user. In my case it is username=nilesh password=nilesh
+start_jenkins.sh
+
+#Create 2 directory project
+1) PROVISIONING
+2) DEPLOYMENT
+
+
+
+
+
+
+	

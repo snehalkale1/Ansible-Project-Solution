@@ -1,0 +1,6 @@
+KEYNAME : Ohio-Key
+REGION : us-east-2
+AZ : us-east-2a
+SUBNETID : subnet-05a3e2383cca60785
+SGNAME : "DEV Public SG"
+AMIID : ami-02b0c55eeae6d5096

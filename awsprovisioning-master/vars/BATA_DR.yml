@@ -1,0 +1,6 @@
+KEYNAME : Oregon-Key
+REGION : us-west-2
+AZ : us-west-2a
+SUBNETID : subnet-09c22076d236667b0
+SGNAME : "DR Public SG"
+AMIID : ami-067f5c3d5a99edc80
